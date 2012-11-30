@@ -1,0 +1,2 @@
+class ProjectNotKnown(Exception):
+    pass
