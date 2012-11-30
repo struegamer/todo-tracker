@@ -15,7 +15,8 @@ class Project(Command):
 
     def _init_subcmd_factory(self):
         self._subcmd = SubCommands(self._subcommand_parser)
-
+        self._subcmd.add_command('todotracker.subcommands.project', 'AddProject')
+        self._subcmd.add_command('todotracker.subcommands.project', 'ListProject')
     def handle_command(self, args=None):
         if args.command == self.COMMAND_NAME:
             if args.sub_command in self._subcmd.commandnames:
