@@ -3,7 +3,6 @@ import datetime
 from todotracker.factories import Commands as SubCommands
 from todotracker.lib import Command
 
-from todotracker.db.models import ProjectDocument
 
 class Project(Command):
     COMMAND_NAME = 'project'
