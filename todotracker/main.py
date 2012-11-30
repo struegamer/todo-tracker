@@ -37,6 +37,7 @@ class TodoTracker(object):
     def _init_commands(self):
         self._cfactory = Commands(self._subparser)
         self._cfactory.add_command(command_class='Task')
+        self._cfactory.add_command(command_class='Project')
 
     def _init_mongo(self):
         self._mongo_connection = mongo_connect('todotracker')
