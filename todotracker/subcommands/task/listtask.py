@@ -2,6 +2,7 @@ import os
 import argparse
 
 from todotracker.lib import Command
+from todotracker.lib import convert_datetime_to_localtime
 
 from todotracker.db.models import TaskDocument
 from todotracker.db.models import TagDocument
@@ -51,15 +52,21 @@ class ListTask(Command):
         print(format.format(task.counter, task.status, task.title))
 
     def _long_output(self, format, task):
-        print(format.format(task.counter, task.status, task.title, task.created_at.strftime('%Y-%m-%d %H:%M:%S'), task.updated_at.strftime('%Y-%m-%d %H:%M:%S')))
+
+        print(format.format(task.counter,
+                            task.status,
+                            task.title,
+                            convert_datetime_to_localtime(task.created_at).strftime('%Y-%m-%d %H:%M:%S'),
+                            convert_datetime_to_localtime(task.updated_at).strftime('%Y-%m-%d %H:%M:%S')))
+
 
     def _detail_output(self, format, task):
         print(format.format(task.counter,
                             task.status,
                             task.title,
                             task.project.title,
-                            task.created_at.strftime('%Y-%m-%d %H:%M:%S'),
-                            task.updated_at.strftime('%Y-%m-%d %H:%M:%S'),
+                            convert_datetime_to_localtime(task.created_at).strftime('%Y-%m-%d %H:%M:%S'),
+                            convert_datetime_to_localtime(task.updated_at).strftime('%Y-%m-%d %H:%M:%S'),
                             ','.join([tag.tag for tag in task.tags])))
 
     def _output(self, listtype, format, task):
