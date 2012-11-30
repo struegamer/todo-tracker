@@ -41,3 +41,4 @@ class AddTask(Command):
             task.updated_at = task.created_at
             task.tags = tagdocuments
             task.save()
+            print('Task \'{0}\' (ID: {1}) added'.format(task.title, task.counter))
