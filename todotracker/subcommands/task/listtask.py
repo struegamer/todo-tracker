@@ -91,6 +91,6 @@ class ListTask(Command):
         for task in tasklist:
             self._output(listtype, format, task)
         print('{0:=<{1}}'.format('', self.screen_cols))
-        print('Number of Tasks: {0:>10}'.format(TaskDocument.objects.count()))
+        print('Number of Tasks: {0:>10}'.format(len(tasklist)))
 
 
