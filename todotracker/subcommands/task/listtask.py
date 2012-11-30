@@ -57,6 +57,7 @@ class ListTask(Command):
         print(format.format(task.counter,
                             task.status,
                             task.title,
+                            task.project.title,
                             task.created_at.strftime('%Y-%m-%d %H:%M:%S'),
                             task.updated_at.strftime('%Y-%m-%d %H:%M:%S'),
                             ','.join([tag.tag for tag in task.tags])))
@@ -78,8 +79,8 @@ class ListTask(Command):
             format = '{0:>10} {1:<10} {2:<40} {3:^20} {4:^20}'
             print(format.format('ID', 'Status', 'Task', 'Created at', 'Updated At'))
         if listtype == 'detail':
-            format = '{0:>10} {1:<10} {2:<40} {3:^20} {4:^20} {5:<30}'
-            print(format.format('ID', 'Status', 'Task', 'Created at', 'Updated At', 'Tags'))
+            format = '{0:>10} {1:<10} {2:<40} {3:<20} {4:^20} {5:^20} {6:<30}'
+            print(format.format('ID', 'Status', 'Task', 'Project', 'Created at', 'Updated At', 'Tags'))
         print('{0:=<{1}}'.format('', self.screen_cols))
         if status != 'all' and status not in self.STATUS_CHOICES:
             raise ValueError('{0} is not a valid status. Valid states are {1}'.format(status, self.STATUS_CHOICES))
