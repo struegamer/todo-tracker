@@ -10,7 +10,7 @@ class Task(Command):
     COMMAND_NAME = 'task'
 
     def _init_subparser(self):
-        self._command_parser = self._parser.add_parser('task', help='addtask options')
+        self._command_parser = self._parser.add_parser('task', help='Task Options')
         self._subcommand_parser = self._command_parser.add_subparsers(dest='sub_command', help='Task Commands')
         self._init_subcmd_factory()
 
