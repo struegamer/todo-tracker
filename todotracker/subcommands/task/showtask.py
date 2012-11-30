@@ -2,6 +2,7 @@ import os
 import argparse
 
 from todotracker.lib import Command
+from todotracker.lib import convert_datetime_to_localtime
 
 from todotracker.db.models import TaskDocument
 from todotracker.db.models import TagDocument
@@ -21,8 +22,8 @@ class ShowTask(Command):
         headline = '{0:=<80}'.format('')
         counter = '\tID: {0} (UUID: {1})'.format(task.counter, task.id)
         status = '\tStatus: {0}'.format(task.status)
-        created = '\tCreated At: {0}'.format(task.created_at.strftime('%Y-%m-%d %H:%M:%S'))
-        updated = '\tUpdated At: {0}'.format(task.updated_at.strftime('%Y-%m-%d %H:%M:%S'))
+        created = '\tCreated At: {0}'.format(convert_datetime_to_localtime(task.created_at).strftime('%Y-%m-%d %H:%M:%S'))
+        updated = '\tUpdated At: {0}'.format(convert_datetime_to_localtime(task.updated_at).strftime('%Y-%m-%d %H:%M:%S'))
         tags = '\tTags: {0}'.format(', '.join([tag.tag for tag in task.tags]))
 
         print(title)
