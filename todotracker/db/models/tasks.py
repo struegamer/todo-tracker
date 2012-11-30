@@ -7,12 +7,13 @@ from mongoengine import DateTimeField
 
 from tags import TagDocument
 from todos import TodoDocument
+from projects import ProjectDocument
 
 class TaskDocument(Document):
     counter = SequenceField()
     title = StringField()
     project = ReferenceField(ProjectDocument)
-    status = StringField(choices=['new', 'pending', 'waiting', 'done'])
+    status = StringField(choices=['new', 'pending', 'pausing', 'waiting', 'done'])
     tags = ListField(ReferenceField(TagDocument))
     todos = ListField(ReferenceField(TodoDocument))
     created_at = DateTimeField()

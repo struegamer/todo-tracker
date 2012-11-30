@@ -45,7 +45,10 @@ class TodoTracker(object):
     def parse(self):
         args = self._parser.parse_args()
         if args.command in self._cfactory.commandnames:
-            self._cfactory.get_command_handler(args.command).handle_command(args)
+            try:
+                self._cfactory.get_command_handler(args.command).handle_command(args)
+            except Exception as e:
+                print('Error: {0}'.format(e))
 
 
 
