@@ -4,6 +4,8 @@ from todotracker.lib import Command
 
 from todotracker.db.models import TaskDocument
 from todotracker.db.models import TagDocument
+from todotracker.db.models import ProjectDocument
+from todotracker.exceptions import ProjectNotKnown
 
 class AddTask(Command):
     COMMAND_NAME = 'add'
@@ -21,7 +23,11 @@ class AddTask(Command):
             project = None
             tagdocuments = []
             if args.project is not None and args.project != '':
-                project = args.project
+                # check for Project
+                try:
+                    project = ProjectDocument.objects.get(title=args.project)
+                except ProjectDocument.DoesNotExist as e:
+                    raise ProjectNotKnown('{0} is not in the Project List. Add it first'.format(args.project))
             if args.tags is not None and args.tags != '':
                 taglist = args.tags.split(',')
                 for i in taglist:

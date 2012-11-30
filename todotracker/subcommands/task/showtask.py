@@ -17,13 +17,14 @@ class ShowTask(Command):
         parser.add_argument('details', default=None, nargs='?')
 
     def _output(self, task):
-        title = 'Task: {0}'.format(task.title)
+        title = 'Task: {0}\tProject: {1}'.format(task.title, task.project.title)
         headline = '{0:=<80}'.format('')
         counter = '\tID: {0} (UUID: {1})'.format(task.counter, task.id)
         status = '\tStatus: {0}'.format(task.status)
         created = '\tCreated At: {0}'.format(task.created_at.strftime('%Y-%m-%d %H:%M:%S'))
         updated = '\tUpdated At: {0}'.format(task.updated_at.strftime('%Y-%m-%d %H:%M:%S'))
         tags = '\tTags: {0}'.format(', '.join([tag.tag for tag in task.tags]))
+
         print(title)
         print(headline)
         print(counter)

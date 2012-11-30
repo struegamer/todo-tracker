@@ -9,7 +9,7 @@ from todotracker.db.models import TagDocument
 
 class ListTask(Command):
     COMMAND_NAME = 'list'
-    STATUS_CHOICES = ['new', 'pending', 'waiting', 'done']
+    STATUS_CHOICES = ['new', 'pending', 'pausing', 'waiting', 'done']
 
     def _init_subparser(self):
         subparser = self._parser
