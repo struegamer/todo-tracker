@@ -11,7 +11,7 @@ from todos import TodoDocument
 class TaskDocument(Document):
     counter = SequenceField()
     title = StringField()
-    project = StringField()
+    project = ReferenceField(ProjectDocument)
     status = StringField(choices=['new', 'pending', 'waiting', 'done'])
     tags = ListField(ReferenceField(TagDocument))
     todos = ListField(ReferenceField(TodoDocument))
