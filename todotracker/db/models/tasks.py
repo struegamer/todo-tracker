@@ -9,14 +9,14 @@ from tags import TagDocument
 from todos import TodoDocument
 
 class TaskDocument(Document):
-    counter=SequenceField()
-    title=StringField()
-    project=StringField()
-    status=StringField(choices=['New','Pending','Waiting','Done'])
-    tags=ListField(ReferenceField(TagDocument))
-    todos=ListField(ReferenceField(TodoDocument))
-    created_at=DateTimeField()
-    updated_at=DateTimeField()
+    counter = SequenceField()
+    title = StringField()
+    project = StringField()
+    status = StringField(choices=['new', 'pending', 'waiting', 'done'])
+    tags = ListField(ReferenceField(TagDocument))
+    todos = ListField(ReferenceField(TodoDocument))
+    created_at = DateTimeField()
+    updated_at = DateTimeField()
 
 
 

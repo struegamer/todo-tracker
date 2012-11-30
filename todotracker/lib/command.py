@@ -1,10 +1,10 @@
 import argparse
 
 class Command(object):
-    COMMAND_NAME='command'
+    COMMAND_NAME = 'command'
 
-    def __init__(self, todotracker=None):
-        self._todotracker=todotracker
+    def __init__(self, parser=None):
+        self._parser = parser
         self._init_subparser()
 
     @property
@@ -14,7 +14,7 @@ class Command(object):
     def _init_subparser(self):
         pass
 
-    def handle_command(self,args=None):
+    def handle_command(self, args=None):
         pass
 
 
