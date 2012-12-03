@@ -49,7 +49,7 @@ class TodoTracker(object):
             try:
                 self._cfactory.get_command_handler(args.command).handle_command(args)
             except Exception as e:
-                print('Error: {0}'.format(e))
+                print('Error: {0} ({1})'.format(e, e.__class__.__name__))
 
 
 
