@@ -15,7 +15,6 @@ class TaskDocument(Document):
     project = ReferenceField(ProjectDocument)
     status = StringField(choices=['new', 'pending', 'pausing', 'waiting', 'done'])
     tags = ListField(ReferenceField(TagDocument))
-    todos = ListField(ReferenceField(TodoDocument))
     created_at = DateTimeField()
     updated_at = DateTimeField()
 

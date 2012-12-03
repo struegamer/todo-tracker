@@ -6,6 +6,7 @@ from todotracker.lib import convert_datetime_to_localtime
 
 from todotracker.db.models import TaskDocument
 from todotracker.db.models import TagDocument
+from todotracker.db.models import WorkDocument, WorkTimeLog
 
 
 class ShowTask(Command):
@@ -15,7 +16,7 @@ class ShowTask(Command):
         subparser = self._parser
         parser = subparser.add_parser('show', help='Show Options')
         parser.add_argument('task', metavar='TASK_ID')
-        parser.add_argument('details', default=None, nargs='?')
+        parser.add_argument('details', metavar='DETAILTYPE', choices=['work'], default=None, nargs='?', help='Can be one of the following [work]')
 
     def _output(self, task):
         title = 'Task: {0}\tProject: {1}'.format(task.title, task.project.title)
@@ -37,13 +38,12 @@ class ShowTask(Command):
     def _output_todos(self, task):
         title = 'Task: {0}'.format(task.title)
         headline = '{0:=<80}'.format('')
-        todos = '\tTodos:'
+        workitems = '\tTodos:'
         print(title)
         print(headline)
-        print(todos)
-        for i in task.todos:
-            todolist = '\t\t{0}'.format(i.title)
-
+        print(workitems)
+        for i in WorkDocument.objects.filter(task=task):
+            print i.title
     def handle_command(self, args=None):
         if args is None:
             raise ValueError('args can not be None')
@@ -51,6 +51,6 @@ class ShowTask(Command):
             task = TaskDocument.objects.get(counter=args.task)
             if args.details is None:
                 self._output(task)
-            if args.details == 'todos':
+            if args.details == 'work':
                 self._output_todos(task)
 
