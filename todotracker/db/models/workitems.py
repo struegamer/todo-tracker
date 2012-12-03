@@ -10,8 +10,8 @@ from mongoengine import DateTimeField
 from tasks import TaskDocument
 
 class WorkTimeLog(EmbeddedDocument):
-	start = DateTimeField()
-	stop = DateTimeField()
+	start = DateTimeField(default=None)
+	stop = DateTimeField(default=None)
 
 class WorkDocument(Document):
     title = StringField()

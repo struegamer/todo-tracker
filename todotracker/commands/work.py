@@ -15,6 +15,10 @@ class Work(Command):
     def _init_subcmd_factory(self):
         self._subcmd = SubCommands(self._subcommand_parser)
         self._subcmd.add_command('todotracker.subcommands.work', 'AddWork')
+        self._subcmd.add_command('todotracker.subcommands.work', 'ListWork')
+        self._subcmd.add_command('todotracker.subcommands.work', 'RemoveWork')
+        self._subcmd.add_command('todotracker.subcommands.work', 'StartWork')
+        self._subcmd.add_command('todotracker.subcommands.work', 'StopWork')
 
     def handle_command(self, args=None):
         if args.command == self.COMMAND_NAME:
