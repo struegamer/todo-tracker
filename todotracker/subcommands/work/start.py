@@ -27,6 +27,7 @@ class StartWork(Command):
                 raise WorkItemAlreadyStarted('Workitem \'{0}\' (ID: {1}) already started'.format(workitem.title, workitem.id))
         item = WorkTimeLog()
         item.start = datetime.datetime.utcnow()
+        workitem.status = 'started'
         workitem.timelog.append(item)
         workitem.save()
 

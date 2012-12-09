@@ -1,6 +1,8 @@
+import os
 import argparse
 import datetime
 from todotracker.lib import Command
+import pwd
 
 from todotracker.db.models import TaskDocument
 from todotracker.db.models import TagDocument
@@ -9,6 +11,10 @@ from todotracker.exceptions import ProjectNotKnown
 
 class AddTask(Command):
     COMMAND_NAME = 'add'
+
+    def __init__(self, parser=None):
+        super(AddTask, self).__init__(parser)
+        self._username = pwd.getpwuid(os.getuid())[0]
 
     def _init_subparser(self):
         parser = self._parser.add_parser('add', help='addtask options')
@@ -40,5 +46,6 @@ class AddTask(Command):
             task.created_at = datetime.datetime.utcnow()
             task.updated_at = task.created_at
             task.tags = tagdocuments
+            task.user = self._username
             task.save()
             print('Task \'{0}\' (ID: {1}) added'.format(task.title, task.counter))

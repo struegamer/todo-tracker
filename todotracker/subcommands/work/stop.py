@@ -29,6 +29,7 @@ class StopWork(Command):
                     if lastitem.start is not None and lastitem.stop is None:
                         lastitem.stop = datetime.datetime.utcnow()
                         workitem.timelog[-1] = lastitem
+                        workitem.status = 'stopped'
                         workitem.save()
                         print('Work item \'{0} (ID: {1}\' stopped'.format(workitem.title, workitem.id))
                         return

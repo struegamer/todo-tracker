@@ -40,5 +40,6 @@ class AddWork(Command):
                     timelog = WorkTimeLog()
                     timelog.start = datetime.datetime.utcnow()
                     work.timelog.append(timelog)
+                    work.status = 'started'
                 work.save()
                 print('Workitem \'{0}\' (ID: {1}) added.'.format(work.title, work.id))
